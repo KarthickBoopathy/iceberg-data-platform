@@ -1,0 +1,59 @@
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+
+# Environment variables
+.env
+.env.*
+
+# Docker
+docker-compose.override.yml
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+tmp/
+temp/
+.cache/
+
+# Python (if using PyIceberg, Spark jobs, scripts)
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# Java / Spark
+target/
+build/
+*.class
+
+# Iceberg / warehouse data
+warehouse/
+data/
+metadata/
+
+# MinIO local storage
+minio-data/
+
+# Spark
+spark-warehouse/
+metastore_db/
+
+# Trino
+trino-data/
+
+# Generated files
+*.parquet
+*.avro
+*.orc
+
+# Jupyter
+.ipynb_checkpoints/

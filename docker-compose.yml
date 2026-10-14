@@ -1,0 +1,37 @@
+services:
+  efdna-nessie-catalog:
+    image: projectnessie/nessie:0.76.0
+    container_name: efdna-nessie-catalog
+    networks:
+      - efdna-network
+    ports:
+      - "19120:19120"
+
+  efdna-minio-storage:
+    image: quay.io/minio/minio
+    container_name: efdna-minio-storage
+    volumes:
+      - ./data:/data
+    environment:
+      MINIO_ROOT_USER: minioadmin
+      MINIO_ROOT_PASSWORD: minioadmin
+    networks:
+      - efdna-network
+    ports:
+      - "9001:9001"
+      - "9000:9000"
+    command: ["server", "/data", "--console-address", ":9001"]
+
+  efdna-trino:
+    image: trinodb/trino:latest
+    container_name: efdna-trino
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./trino/catalog:/etc/trino/catalog
+    networks:
+      - efdna-network
+
+networks:
+  efdna-network: {}
+
