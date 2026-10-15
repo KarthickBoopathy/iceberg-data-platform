@@ -1,7 +1,17 @@
 services:
   efdna-nessie-catalog:
-    image: projectnessie/nessie:0.76.0
+    image: ghcr.io/projectnessie/nessie:latest
     container_name: efdna-nessie-catalog
+    environment:
+      NESSIE_CATALOG_DEFAULT_WAREHOUSE: warehouse
+      NESSIE_CATALOG_WAREHOUSES_WAREHOUSE_LOCATION: s3://warehouse/
+      NESSIE_CATALOG_SERVICE_S3_DEFAULT_OPTIONS_ENDPOINT: http://efdna-minio-storage:9000/
+      NESSIE_CATALOG_SERVICE_S3_DEFAULT_OPTIONS_PATH_STYLE_ACCESS: "true"
+      NESSIE_CATALOG_SERVICE_S3_DEFAULT_OPTIONS_REGION: us-east-1
+      NESSIE_CATALOG_SERVICE_S3_DEFAULT_OPTIONS_AUTH_TYPE: APPLICATION_GLOBAL
+      AWS_ACCESS_KEY_ID: minioadmin
+      AWS_SECRET_ACCESS_KEY: minioadmin
+      AWS_REGION: us-east-1
     networks:
       - efdna-network
     ports:
